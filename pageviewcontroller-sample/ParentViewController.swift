@@ -1,0 +1,90 @@
+//
+//  ParentViewController.swift
+//  pageviewcontroller-sample
+//
+//  Created by Manami Ichikawa on 2019/01/26.
+//  Copyright © 2019 Manami Ichikawa. All rights reserved.
+//
+
+import UIKit
+
+class ParentViewController: UIPageViewController {
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.view.backgroundColor = .white
+        dataSource = self
+        delegate = self
+        
+        scrollToViewController(viewController: getFirst())
+    }
+    
+    func getFirst() -> FirstViewController {
+        return UIStoryboard(
+            name: "ParentViewController",
+            bundle: nil).instantiateViewController(
+                withIdentifier: "FirstViewController") as! FirstViewController
+    }
+    
+    func getSecond() -> SecondViewController {
+        return UIStoryboard(
+            name: "ParentViewController",
+            bundle: nil).instantiateViewController(
+                withIdentifier: "SecondViewController") as! SecondViewController
+    }
+    
+    func getThird() -> ThirdViewController {
+        return UIStoryboard(
+            name: "ParentViewController",
+            bundle: nil).instantiateViewController(
+                withIdentifier: "ThirdViewController") as! ThirdViewController
+    }
+    
+    func scrollToViewController(viewController: UIViewController) {
+        setViewControllers([viewController],
+                           direction: .forward,
+                           animated: true,
+                           completion: { (finished) -> Void in
+        })
+    }
+}
+
+// MARK: UIPageViewControllerDataSource
+
+extension ParentViewController: UIPageViewControllerDataSource {
+    
+    func pageViewController(_ pageViewController: UIPageViewController,
+                            viewControllerBefore viewController: UIViewController) -> UIViewController? {
+        
+        if viewController.isKind(of: ThirdViewController.self) {
+            return getSecond()
+        } else if viewController.isKind(of: SecondViewController.self) {
+            return getFirst()
+        } else {
+            return nil
+        }
+    }
+    
+    func pageViewController(_ pageViewController: UIPageViewController,
+                            viewControllerAfter viewController: UIViewController) -> UIViewController? {
+
+        if viewController.isKind(of: FirstViewController.self) {
+            return getSecond()
+        } else if viewController.isKind(of: SecondViewController.self) {
+            return getThird()
+        } else {
+            return nil
+        }
+    }
+    
+}
+
+extension ParentViewController: UIPageViewControllerDelegate {
+    
+    func pageViewController(_ pageViewController: UIPageViewController,
+                            didFinishAnimating finished: Bool,
+                            previousViewControllers: [UIViewController],
+                            transitionCompleted completed: Bool) {
+    }
+    
+}
