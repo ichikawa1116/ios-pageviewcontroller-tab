@@ -7,8 +7,13 @@
 //
 
 import UIKit
+import RxCocoa
+import RxSwift
 
 class ParentViewController: UIPageViewController {
+    
+    let firstDidScroll = PublishRelay<(CGFloat, Bool)>()
+    private let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,10 +25,13 @@ class ParentViewController: UIPageViewController {
     }
     
     func getFirst() -> FirstViewController {
-        return UIStoryboard(
+        let viewController = UIStoryboard(
             name: "ParentViewController",
             bundle: nil).instantiateViewController(
                 withIdentifier: "FirstViewController") as! FirstViewController
+        
+        viewController.setup(didScroll: firstDidScroll)
+        return viewController
     }
     
     func getSecond() -> SecondViewController {

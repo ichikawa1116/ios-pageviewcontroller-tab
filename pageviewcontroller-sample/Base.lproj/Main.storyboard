@@ -74,6 +74,7 @@
                     <connections>
                         <outlet property="containerView" destination="28h-FA-EHg" id="HoK-JN-ZgA"/>
                         <outlet property="headerView" destination="cnq-0G-sVx" id="3A0-NJ-mlE"/>
+                        <outlet property="scrollView" destination="fDC-rF-tad" id="gI5-Ct-eU9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tOg-WE-SXe" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -21,7 +21,26 @@
 		387F06D921FD92EE00FE27EC /* HeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 387F06D821FD92EE00FE27EC /* HeaderView.xib */; };
 		387F06DC21FD96D100FE27EC /* HeaderTabCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387F06DA21FD96D100FE27EC /* HeaderTabCell.swift */; };
 		387F06DD21FD96D100FE27EC /* HeaderTabCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 387F06DB21FD96D100FE27EC /* HeaderTabCell.xib */; };
+		387F06E021FDB8D800FE27EC /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 387F06DF21FDB8D800FE27EC /* RxCocoa.framework */; };
+		387F06E121FDB8D800FE27EC /* RxCocoa.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 387F06DF21FDB8D800FE27EC /* RxCocoa.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		387F06E421FDB8EF00FE27EC /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 387F06E321FDB8EF00FE27EC /* RxSwift.framework */; };
+		387F06E521FDB8EF00FE27EC /* RxSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 387F06E321FDB8EF00FE27EC /* RxSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		387F06E221FDB8D800FE27EC /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				387F06E521FDB8EF00FE27EC /* RxSwift.framework in Embed Frameworks */,
+				387F06E121FDB8D800FE27EC /* RxCocoa.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		3822D0A621FC453B006BBFC8 /* pageviewcontroller-sample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "pageviewcontroller-sample.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -40,6 +59,8 @@
 		387F06D821FD92EE00FE27EC /* HeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeaderView.xib; sourceTree = "<group>"; };
 		387F06DA21FD96D100FE27EC /* HeaderTabCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderTabCell.swift; sourceTree = "<group>"; };
 		387F06DB21FD96D100FE27EC /* HeaderTabCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeaderTabCell.xib; sourceTree = "<group>"; };
+		387F06DF21FDB8D800FE27EC /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxCocoa.framework; path = Carthage/Build/iOS/RxCocoa.framework; sourceTree = "<group>"; };
+		387F06E321FDB8EF00FE27EC /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = Carthage/Build/iOS/RxSwift.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +68,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				387F06E421FDB8EF00FE27EC /* RxSwift.framework in Frameworks */,
+				387F06E021FDB8D800FE27EC /* RxCocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -58,6 +81,8 @@
 			children = (
 				3822D0A821FC453B006BBFC8 /* pageviewcontroller-sample */,
 				3822D0A721FC453B006BBFC8 /* Products */,
+				387F06E321FDB8EF00FE27EC /* RxSwift.framework */,
+				387F06DF21FDB8D800FE27EC /* RxCocoa.framework */,
 			);
 			sourceTree = "<group>";
 		};
@@ -117,6 +142,8 @@
 				3822D0A221FC453B006BBFC8 /* Sources */,
 				3822D0A321FC453B006BBFC8 /* Frameworks */,
 				3822D0A421FC453B006BBFC8 /* Resources */,
+				387F06E221FDB8D800FE27EC /* Embed Frameworks */,
+				387F06E621FDB92D00FE27EC /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -175,6 +202,26 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		387F06E621FDB92D00FE27EC /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 8;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+			shellPath = "/usr/local/bin/carthage copy-frameworks";
+			shellScript = "$(SRCROOT)/Carthage/Build/iOS/RxSwift.framework\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		3822D0A221FC453B006BBFC8 /* Sources */ = {
@@ -342,7 +389,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 45NPXDDZC6;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = "pageviewcontroller-sample/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -350,6 +403,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "edu.myself.pageviewcontroller-sample";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -359,7 +413,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 45NPXDDZC6;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = "pageviewcontroller-sample/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -367,6 +427,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "edu.myself.pageviewcontroller-sample";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
