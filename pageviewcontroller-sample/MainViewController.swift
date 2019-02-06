@@ -37,8 +37,17 @@ class MainViewController: UIViewController {
                 nibName: "HeaderTabCell",
                 bundle: nil),
             forCellWithReuseIdentifier: "HeaderTabCell")
-        
+        scrollView.contentInsetAdjustmentBehavior = .never
         bind()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+//        let aaa = CGFloat( Int(UIScreen.main.bounds.height) + 150)
+        self.scrollView.contentInset = UIEdgeInsets(top: 64, left: 0, bottom: 0, right: 0)
+//        self.scrollView.frame.size = CGSize(width: UIScreen.main.bounds.width, height: aaa)
+        self.scrollView.contentOffset = CGPoint(x:0, y:0);
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -50,24 +59,28 @@ class MainViewController: UIViewController {
     func bind() {
         pageViewController.firstDidScroll.asSignal()
             .emit(onNext: { scroll in
-                self.updateHeader( scrollDiff: scroll.0, isScrollUp: scroll.1)
+                self.updateHeader( scrollDiff: scroll.0, isScrollDown: scroll.1)
             }).disposed(by: disposeBag)
     }
     
-    func updateHeader(scrollDiff: CGFloat, isScrollUp: Bool) {
+    func updateHeader(scrollDiff: CGFloat, isScrollDown: Bool) {
         var newY = self.scrollView.contentOffset.y
         
        // if isScrollingDown {
 //            newY = max(-self.maxHeaderHeight, self.scrollView.contentOffset.y - abs(scrollDiff))
 //
-        if isScrollUp {
+        if isScrollDown {
             newY = max(0, self.scrollView.contentOffset.y - abs(scrollDiff))
         } else {
             newY = min(self.maxHeaderHeight, self.scrollView.contentOffset.y + abs(scrollDiff))
         }
         
         if newY != self.scrollView.contentOffset.y {
+            self.view.layoutIfNeeded()
             self.scrollView.contentOffset.y = newY
+            let viewC = pageViewController.firstVC
+            viewC?.setScrollPosition(0)
+            //self.scrollView.layoutIfNeeded()
         }
         
 //        if newUpperHeight != self.upperHeaderConstraint.constant {
@@ -117,10 +130,6 @@ class MainViewController: UIViewController {
 //            self.view.layoutIfNeeded()
 //        })
 //    }
-    
-    func setScrollPosition(_ position: CGFloat) {
-        self.scrollView.contentOffset = CGPoint(x: self.scrollView.contentOffset.x, y: position)
-    }
 }
 
 extension MainViewController: UICollectionViewDataSource {
@@ -177,13 +186,13 @@ extension MainViewController: UICollectionViewDelegate {
         
         if indexPath.row == 0 {
             pageViewController.scrollToViewController(
-                viewController: pageViewController.getFirst())
+                viewController: pageViewController.firstVC)
         } else if indexPath.row == 1 {
             pageViewController.scrollToViewController(
                 viewController: pageViewController.getSecond())
         } else if indexPath.row == 2 {
-        pageViewController.scrollToViewController(
-            viewController:pageViewController.getThird())
+            pageViewController.scrollToViewController(
+                viewController:pageViewController.getThird())
         }
     }
 }

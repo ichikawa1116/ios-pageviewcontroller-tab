@@ -14,6 +14,7 @@ class ParentViewController: UIPageViewController {
     
     let firstDidScroll = PublishRelay<(CGFloat, Bool)>()
     private let disposeBag = DisposeBag()
+    var firstVC: FirstViewController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +22,14 @@ class ParentViewController: UIPageViewController {
         dataSource = self
         delegate = self
         
-        scrollToViewController(viewController: getFirst())
+        
+        setupVC()
+        
+        scrollToViewController(viewController: firstVC)
+    }
+    
+    func setupVC() {
+        firstVC = getFirst()
     }
     
     func getFirst() -> FirstViewController {
@@ -67,7 +75,7 @@ extension ParentViewController: UIPageViewControllerDataSource {
         if viewController.isKind(of: ThirdViewController.self) {
             return getSecond()
         } else if viewController.isKind(of: SecondViewController.self) {
-            return getFirst()
+            return self.firstVC
         } else {
             return nil
         }

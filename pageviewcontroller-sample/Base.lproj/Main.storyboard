@@ -13,19 +13,19 @@
         <!--Main View Controller-->
         <scene sceneID="xKw-mv-V4c">
             <objects>
-                <viewController id="iNZ-Ai-3go" customClass="MainViewController" customModule="pageviewcontroller_sample" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="iNZ-Ai-3go" customClass="MainViewController" customModule="pageviewcontroller_sample" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="70M-Gh-SsV">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fDC-rF-tad">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fDC-rF-tad">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FZI-x0-nZL">
+                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FZI-x0-nZL">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                         <subviews>
-                                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="28h-FA-EHg">
-                                                <rect key="frame" x="0.0" y="250" width="375" height="417"/>
+                                            <containerView opaque="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="28h-FA-EHg">
+                                                <rect key="frame" x="0.0" y="250" width="375" height="667"/>
                                                 <connections>
                                                     <segue destination="SaT-5a-LSw" kind="embed" identifier="pageViewControllerSegue" id="BA7-sw-aHj"/>
                                                 </connections>
@@ -40,6 +40,7 @@
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
+                                            <constraint firstItem="28h-FA-EHg" firstAttribute="height" secondItem="FZI-x0-nZL" secondAttribute="height" id="R89-7W-JWH"/>
                                             <constraint firstItem="cnq-0G-sVx" firstAttribute="top" secondItem="FZI-x0-nZL" secondAttribute="top" id="Ttz-8R-3Ju"/>
                                             <constraint firstAttribute="bottom" secondItem="28h-FA-EHg" secondAttribute="bottom" id="UHU-YX-wp9"/>
                                             <constraint firstAttribute="trailing" secondItem="cnq-0G-sVx" secondAttribute="trailing" id="XbP-9I-FL5"/>
@@ -61,7 +62,6 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="FZI-x0-nZL" firstAttribute="width" secondItem="70M-Gh-SsV" secondAttribute="width" id="3vx-aT-aJo"/>
-                            <constraint firstItem="FZI-x0-nZL" firstAttribute="height" secondItem="70M-Gh-SsV" secondAttribute="height" id="atW-Id-pgS"/>
                             <constraint firstItem="fDC-rF-tad" firstAttribute="leading" secondItem="7wA-8l-BWZ" secondAttribute="leading" id="dwg-nB-mrm"/>
                             <constraint firstItem="fDC-rF-tad" firstAttribute="top" secondItem="7wA-8l-BWZ" secondAttribute="top" id="jbt-MM-Hju"/>
                             <constraint firstItem="7wA-8l-BWZ" firstAttribute="bottom" secondItem="fDC-rF-tad" secondAttribute="bottom" id="mzW-UH-nUF"/>

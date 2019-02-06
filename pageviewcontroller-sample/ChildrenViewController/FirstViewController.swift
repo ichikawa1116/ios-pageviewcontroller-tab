@@ -46,11 +46,10 @@ extension FirstViewController: UITableViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let scrollDiff = scrollView.contentOffset.y - 0
         // 上にスクロール
-        let isScrollingUp = scrollView.contentOffset.y < startingScrollOffset
-        didScroll.accept((scrollDiff, isScrollingUp))
-        setScrollPosition(0)
-        
+        let isScrollingDown = scrollView.contentOffset.y < startingScrollOffset
+        didScroll.accept((scrollDiff, isScrollingDown))
         startingScrollOffset = scrollView.contentOffset.y
+        print(scrollDiff)
     }
     
     func setScrollPosition(_ position: CGFloat) {
